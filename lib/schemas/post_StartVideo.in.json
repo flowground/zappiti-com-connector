@@ -1,0 +1,40 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "properties": {
+                "ApiKey": {
+                    "description": "Client API Key",
+                    "format": "uuid",
+                    "type": "string"
+                },
+                "AuthKey": {
+                    "description": "User auth key",
+                    "format": "uuid",
+                    "type": "string"
+                },
+                "Collection": {
+                    "description": "Collection id",
+                    "format": "string",
+                    "type": "string"
+                },
+                "Ip": {
+                    "description": "Server Ip",
+                    "format": "string",
+                    "type": "string"
+                },
+                "MediaId": {
+                    "description": "Id of the video to start",
+                    "format": "uuid",
+                    "type": "string"
+                },
+                "Port": {
+                    "description": "Server Port",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

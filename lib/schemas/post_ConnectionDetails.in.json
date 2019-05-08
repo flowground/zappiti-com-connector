@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "properties": {
+                "ApiKey": {
+                    "description": "Client API Key",
+                    "format": "uuid",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

@@ -1,0 +1,151 @@
+{
+    "title": "Zappiti Player",
+    "description": "Move your app forward with the Zappiti Player API. Use http://your-player-ip:8990/ as base URL for your requests.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/zappiti.com/4.15.174/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "http://{ip_address}:8990/",
+                    "http://192.168.1.5:8990/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "post_CheckZappitiService": {
+            "main": "./lib/actions/post_CheckZappitiService.js",
+            "title": "Check if Zappiti Service app status on the player",
+            "description": "ErrorCode.NotInstalled\nErrorCode.NotRunning\nErrorCode.Running\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_CheckZappitiService.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_ConnectionDetails": {
+            "main": "./lib/actions/post_ConnectionDetails.js",
+            "title": "Get user's login details",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_ConnectionDetails.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_InstallZappitiService": {
+            "main": "./lib/actions/post_InstallZappitiService.js",
+            "title": "Open a popup that allow the user to install Zappiti Service, if not already installed",
+            "description": "",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_InstallZappitiService.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_IsAlive": {
+            "main": "./lib/actions/post_IsAlive.js",
+            "title": "Get server status",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_IsAlive.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_LastMedia": {
+            "main": "./lib/actions/post_LastMedia.js",
+            "title": "Get informations about last media playback",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_LastMedia.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_StartVideo": {
+            "main": "./lib/actions/post_StartVideo.js",
+            "title": "Start the playback",
+            "description": "Start the playback of the speficied video.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_StartVideo.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_StartZappitiService": {
+            "main": "./lib/actions/post_StartZappitiService.js",
+            "title": "Start Zappiti Service if not started yet",
+            "description": "",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_StartZappitiService.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

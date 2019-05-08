@@ -1,0 +1,809 @@
+{
+    "openapi": "3.0.0",
+    "servers": [
+        {
+            "url": "http://{ip_address}:8990/",
+            "variables": {
+                "ip_address": {
+                    "default": "192.168.1.5"
+                }
+            }
+        },
+        {
+            "url": "http://192.168.1.5:8990/"
+        }
+    ],
+    "info": {
+        "description": "Move your app forward with the Zappiti Player API. Use http://your-player-ip:8990/ as base URL for your requests.",
+        "title": "Zappiti Player",
+        "version": "4.15.174",
+        "x-apisguru-categories": [
+            "media"
+        ],
+        "x-logo": {
+            "backgroundColor": "#FFFFFF",
+            "url": "https://api.apis.guru/v2/cache/logo/https_cloud.githubusercontent.com_assets_21603_24292732_7e3a8038-1086-11e7-90c0-434e4dcc3474.png"
+        },
+        "x-origin": [
+            {
+                "format": "swagger",
+                "url": "http://zappiti.com/api/zappiti-player-4k/swagger/swagger.yaml",
+                "version": "2.0"
+            }
+        ],
+        "x-preferred": true,
+        "x-providerName": "zappiti.com"
+    },
+    "paths": {
+        "/CheckZappitiService": {
+            "post": {
+                "description": "ErrorCode.NotInstalled\nErrorCode.NotRunning\nErrorCode.Running\n",
+                "responses": {
+                    "200": {
+                        "description": "CheckZappitiServiceResult",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "ErrorCode": {
+                                            "enum": [
+                                                "None",
+                                                "Failed",
+                                                "Exist",
+                                                "NotInstalled",
+                                                "NotRunning",
+                                                "Running",
+                                                "FailToStart",
+                                                "BadApiKey"
+                                            ],
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Check if Zappiti Service app status on the player",
+                "tags": [
+                    "Zappiti Service"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "ApiKey": {
+                                        "description": "Client API Key",
+                                        "format": "uuid",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "/ConnectionDetails": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "ConnectionDetailsResult",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "AuthKey": {
+                                            "description": "User's Authentification key",
+                                            "format": "uuid",
+                                            "type": "string"
+                                        },
+                                        "Collection": {
+                                            "description": "User's collection id",
+                                            "format": "string",
+                                            "type": "string"
+                                        },
+                                        "Email": {
+                                            "description": "User's email used for the collection",
+                                            "format": "string",
+                                            "type": "string"
+                                        },
+                                        "ErrorCode": {
+                                            "enum": [
+                                                "None",
+                                                "Failed",
+                                                "Exist",
+                                                "NotInstalled",
+                                                "NotRunning",
+                                                "Running",
+                                                "FailToStart",
+                                                "BadApiKey"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "ServerIp": {
+                                            "description": "Server's IP",
+                                            "format": "string",
+                                            "type": "string"
+                                        },
+                                        "ServerPort": {
+                                            "description": "Port used by the server",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Get user's login details",
+                "tags": [
+                    "General"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "ApiKey": {
+                                        "description": "Client API Key",
+                                        "format": "uuid",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "/InstallZappitiService": {
+            "post": {
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "InstallZappitiServiceResult",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "ErrorCode": {
+                                            "enum": [
+                                                "None",
+                                                "Failed",
+                                                "Exist",
+                                                "NotInstalled",
+                                                "NotRunning",
+                                                "Running",
+                                                "FailToStart",
+                                                "BadApiKey"
+                                            ],
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Open a popup that allow the user to install Zappiti Service, if not already installed",
+                "tags": [
+                    "Zappiti Service"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "ApiKey": {
+                                        "description": "Client API Key",
+                                        "format": "uuid",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "/IsAlive": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "IsAliveResult",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "ErrorCode": {
+                                            "enum": [
+                                                "None",
+                                                "Failed",
+                                                "Exist",
+                                                "NotInstalled",
+                                                "NotRunning",
+                                                "Running",
+                                                "FailToStart",
+                                                "BadApiKey"
+                                            ],
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Get server status",
+                "tags": [
+                    "General"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "ApiKey": {
+                                        "description": "Client API Key",
+                                        "format": "uuid",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "/LastMedia": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "LastMediaResult",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "Actors": {
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "BackgroundUrl": {
+                                            "type": "string"
+                                        },
+                                        "Directors": {
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "Episode": {
+                                            "type": "integer"
+                                        },
+                                        "ErrorCode": {
+                                            "enum": [
+                                                "None",
+                                                "Failed",
+                                                "Exist",
+                                                "NotInstalled",
+                                                "NotRunning",
+                                                "Running",
+                                                "FailToStart",
+                                                "BadApiKey"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "PosterUrl": {
+                                            "type": "string"
+                                        },
+                                        "Runtime": {
+                                            "type": "integer"
+                                        },
+                                        "Season": {
+                                            "type": "integer"
+                                        },
+                                        "Synopsis": {
+                                            "type": "string"
+                                        },
+                                        "Title": {
+                                            "type": "string"
+                                        },
+                                        "TvShowName": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Get informations about last media playback",
+                "tags": [
+                    "Playback"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "ApiKey": {
+                                        "description": "Client API Key",
+                                        "format": "uuid",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "/StartVideo": {
+            "post": {
+                "description": "Start the playback of the speficied video.\n",
+                "responses": {
+                    "200": {
+                        "description": "StartVideoResult",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "ErrorCode": {
+                                            "enum": [
+                                                "None",
+                                                "Failed",
+                                                "Exist",
+                                                "NotInstalled",
+                                                "NotRunning",
+                                                "Running",
+                                                "FailToStart",
+                                                "BadApiKey"
+                                            ],
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Start the playback",
+                "tags": [
+                    "Playback"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "ApiKey": {
+                                        "description": "Client API Key",
+                                        "format": "uuid",
+                                        "type": "string"
+                                    },
+                                    "AuthKey": {
+                                        "description": "User auth key",
+                                        "format": "uuid",
+                                        "type": "string"
+                                    },
+                                    "Collection": {
+                                        "description": "Collection id",
+                                        "format": "string",
+                                        "type": "string"
+                                    },
+                                    "Ip": {
+                                        "description": "Server Ip",
+                                        "format": "string",
+                                        "type": "string"
+                                    },
+                                    "MediaId": {
+                                        "description": "Id of the video to start",
+                                        "format": "uuid",
+                                        "type": "string"
+                                    },
+                                    "Port": {
+                                        "description": "Server Port",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "/StartZappitiService": {
+            "post": {
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "StartZappitiServiceResult",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "ErrorCode": {
+                                            "enum": [
+                                                "None",
+                                                "Failed",
+                                                "Exist",
+                                                "NotInstalled",
+                                                "NotRunning",
+                                                "Running",
+                                                "FailToStart",
+                                                "BadApiKey"
+                                            ],
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Start Zappiti Service if not started yet",
+                "tags": [
+                    "Zappiti Service"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "ApiKey": {
+                                        "description": "Client API Key",
+                                        "format": "uuid",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CheckZappitiServiceRequest": {
+                "properties": {
+                    "ApiKey": {
+                        "description": "Client API Key",
+                        "format": "uuid",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "CheckZappitiServiceResult": {
+                "properties": {
+                    "ErrorCode": {
+                        "enum": [
+                            "None",
+                            "Failed",
+                            "Exist",
+                            "NotInstalled",
+                            "NotRunning",
+                            "Running",
+                            "FailToStart",
+                            "BadApiKey"
+                        ],
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ConnectionDetailsRequest": {
+                "properties": {
+                    "ApiKey": {
+                        "description": "Client API Key",
+                        "format": "uuid",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ConnectionDetailsResult": {
+                "properties": {
+                    "AuthKey": {
+                        "description": "User's Authentification key",
+                        "format": "uuid",
+                        "type": "string"
+                    },
+                    "Collection": {
+                        "description": "User's collection id",
+                        "format": "string",
+                        "type": "string"
+                    },
+                    "Email": {
+                        "description": "User's email used for the collection",
+                        "format": "string",
+                        "type": "string"
+                    },
+                    "ErrorCode": {
+                        "enum": [
+                            "None",
+                            "Failed",
+                            "Exist",
+                            "NotInstalled",
+                            "NotRunning",
+                            "Running",
+                            "FailToStart",
+                            "BadApiKey"
+                        ],
+                        "type": "string"
+                    },
+                    "ServerIp": {
+                        "description": "Server's IP",
+                        "format": "string",
+                        "type": "string"
+                    },
+                    "ServerPort": {
+                        "description": "Port used by the server",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "ErrorCode": {
+                "enum": [
+                    "None",
+                    "Failed",
+                    "Exist",
+                    "NotInstalled",
+                    "NotRunning",
+                    "Running",
+                    "FailToStart",
+                    "BadApiKey"
+                ],
+                "type": "string"
+            },
+            "InstallZappitiServiceRequest": {
+                "properties": {
+                    "ApiKey": {
+                        "description": "Client API Key",
+                        "format": "uuid",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "InstallZappitiServiceResult": {
+                "properties": {
+                    "ErrorCode": {
+                        "enum": [
+                            "None",
+                            "Failed",
+                            "Exist",
+                            "NotInstalled",
+                            "NotRunning",
+                            "Running",
+                            "FailToStart",
+                            "BadApiKey"
+                        ],
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "IsAliveRequest": {
+                "properties": {
+                    "ApiKey": {
+                        "description": "Client API Key",
+                        "format": "uuid",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "IsAliveResult": {
+                "properties": {
+                    "ErrorCode": {
+                        "enum": [
+                            "None",
+                            "Failed",
+                            "Exist",
+                            "NotInstalled",
+                            "NotRunning",
+                            "Running",
+                            "FailToStart",
+                            "BadApiKey"
+                        ],
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "LastMediaRequest": {
+                "properties": {
+                    "ApiKey": {
+                        "description": "Client API Key",
+                        "format": "uuid",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "LastMediaResult": {
+                "properties": {
+                    "Actors": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "BackgroundUrl": {
+                        "type": "string"
+                    },
+                    "Directors": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "Episode": {
+                        "type": "integer"
+                    },
+                    "ErrorCode": {
+                        "enum": [
+                            "None",
+                            "Failed",
+                            "Exist",
+                            "NotInstalled",
+                            "NotRunning",
+                            "Running",
+                            "FailToStart",
+                            "BadApiKey"
+                        ],
+                        "type": "string"
+                    },
+                    "PosterUrl": {
+                        "type": "string"
+                    },
+                    "Runtime": {
+                        "type": "integer"
+                    },
+                    "Season": {
+                        "type": "integer"
+                    },
+                    "Synopsis": {
+                        "type": "string"
+                    },
+                    "Title": {
+                        "type": "string"
+                    },
+                    "TvShowName": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "StartVideoRequest": {
+                "properties": {
+                    "ApiKey": {
+                        "description": "Client API Key",
+                        "format": "uuid",
+                        "type": "string"
+                    },
+                    "AuthKey": {
+                        "description": "User auth key",
+                        "format": "uuid",
+                        "type": "string"
+                    },
+                    "Collection": {
+                        "description": "Collection id",
+                        "format": "string",
+                        "type": "string"
+                    },
+                    "Ip": {
+                        "description": "Server Ip",
+                        "format": "string",
+                        "type": "string"
+                    },
+                    "MediaId": {
+                        "description": "Id of the video to start",
+                        "format": "uuid",
+                        "type": "string"
+                    },
+                    "Port": {
+                        "description": "Server Port",
+                        "format": "int32",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "StartVideoResult": {
+                "properties": {
+                    "ErrorCode": {
+                        "enum": [
+                            "None",
+                            "Failed",
+                            "Exist",
+                            "NotInstalled",
+                            "NotRunning",
+                            "Running",
+                            "FailToStart",
+                            "BadApiKey"
+                        ],
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "StartZappitiServiceRequest": {
+                "properties": {
+                    "ApiKey": {
+                        "description": "Client API Key",
+                        "format": "uuid",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "StartZappitiServiceResult": {
+                "properties": {
+                    "ErrorCode": {
+                        "enum": [
+                            "None",
+                            "Failed",
+                            "Exist",
+                            "NotInstalled",
+                            "NotRunning",
+                            "Running",
+                            "FailToStart",
+                            "BadApiKey"
+                        ],
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "requestBodies": {
+            "Body": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "ApiKey": {
+                                    "description": "Client API Key",
+                                    "format": "uuid",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "required": true
+            }
+        }
+    }
+}
